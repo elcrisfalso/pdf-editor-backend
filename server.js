@@ -1,4 +1,4 @@
-const express = require('express');
+ const express = require('express');
 const multer = require('multer');
 const axios = require('axios');
 const path = require('path');
@@ -26,4 +26,22 @@ app.post('/convert-pdf-to-word', upload.single('pdfFile'), async (req, res) => {
       {
         headers: {
           'Content-Type': 'application/pdf',
-          'Apikey': process.env.Apikey || 'TU_API_
+          'Apikey': process.env.Apikey || 'TU_API_KEY'  // Reemplaza esto si no usas .env
+        },
+        responseType: 'arraybuffer'
+      }
+    );
+
+    res.set('Content-Disposition', 'attachment; filename=converted.txt');
+    res.set('Content-Type', 'text/plain');
+    res.send(response.data);
+  } catch (err) {
+    console.error('Error en la conversión:', err.message);
+    res.status(500).send('Error al convertir el PDF');
+  }
+});
+
+// Iniciar servidor
+app.listen(port, () => {
+  console.log(`Servidor ejecutándose en http://localhost:${port}`);
+});
