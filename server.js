@@ -26,7 +26,7 @@ app.post('/convert-pdf-to-word', upload.single('pdfFile'), async (req, res) => {
       {
         headers: {
           'Content-Type': 'application/pdf',
-          'Apikey': process.env.Apikey || 'TU_API_KEY'  // Reemplaza esto si no usas .env
+          'Apikey': process.env.Apikey || '8d0a1cc9-6016-42f4-b416-d42f4799789e'  // Reemplaza esto si no usas .env
         },
         responseType: 'arraybuffer'
       }
